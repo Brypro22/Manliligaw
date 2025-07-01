@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pwede ba ako manligaw?</title>
   <style>
     body {
@@ -9,37 +10,85 @@
       color: white;
       text-align: center;
       font-family: Arial, sans-serif;
-      margin-top: 100px;
+      padding-top: 50px;
     }
     h1 {
-      font-size: 36px;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      position: relative;
+      height: 200px;
     }
     button {
       padding: 10px 20px;
-      font-size: 18px;
-      margin: 20px;
-      border: none;
+      font-size: 1.2rem;
+      margin: 10px;
       cursor: pointer;
+      border: none;
+      border-radius: 5px;
     }
-    #YesBtn {
-      background-color: #4CAF50;
-      color: white;
+    #yesBtn {
+      background: #2ecc71;
     }
-    #NoBtn {
-      background-color: #4CAF50;
-      color: white;
+    #noBtn {
+      background: #e74c3c;
       position: absolute;
+      transition: all 0.2s;
     }
-    .footer {
-      margin-top: 50px;
-      font-size: 12px;
-      color: #555;
+    .video-container {
+      margin-top: 30px;
+      display: none;
+    }
+    .video-container iframe {
+      width: 320px;
+      height: 480px;
+      border: none;
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
-
   <h1>Pwede ba ako manligaw?</h1>
+  <div class="buttons">
+    <button id="yesBtn">Oo</button>
+    <button id="noBtn">Hindi</button>
+  </div>
 
-  <button id="YesBtn" onclick="alert('Yieee! Ligaw na agad 😍')">Oo</button>
-  <button id="NoBtn" onmouseover="moveButton()">Hind
+  <div class="video-container" id="videoBox">
+    <!-- TikTok video 1 -->
+    <iframe
+      src="https://www.tiktok.com/embed/7498017758760733960"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+    <!-- TikTok video 2 -->
+    <iframe
+      src="https://www.tiktok.com/embed/ZSHbBtp7NTAgk-oOxuh/"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const videoBox = document.getElementById("videoBox");
+
+    yesBtn.addEventListener("click", () => {
+      alert("You're Welcome😍!");
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+      // Move the button
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      // Show videos
+      videoBox.style.display = "block";
+    });
+  </script>
+</body>
+</html>
