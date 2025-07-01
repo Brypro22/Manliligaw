@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Pwede ba ako manligaw?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script async src="https://www.tiktok.com/embed.js"></script>
   <style>
     body {
@@ -30,11 +31,11 @@
       border-radius: 6px;
       cursor: pointer;
     }
-    #yesBtn {
+    #yesBtn, #yesBtn2 {
       background-color: green;
       color: white;
     }
-    #noBtn {
+    #noBtn, #noBtn2 {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -42,13 +43,18 @@
       color: white;
       transition: 0.2s ease;
     }
-    #tiktokVideo {
+    .videoBox {
       position: absolute;
-      left: 20px;
       top: 50%;
       transform: translateY(-50%);
-      width: 320px;
+      width: 325px;
       display: none;
+    }
+    #video1 {
+      left: 20px;
+    }
+    #video2 {
+      right: 20px;
     }
   </style>
 </head>
@@ -57,35 +63,74 @@
   <div id="buttonWrapper">
     <button id="yesBtn">Oo</button>
     <button id="noBtn">Hindi</button>
+    <button id="yesBtn2" style="display:none;">Oo</button>
+    <button id="noBtn2" style="display:none;">Hindi</button>
   </div>
 
-  <div id="tiktokVideo">
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017758760733960" data-video-id="7498017758760733960" style="max-width: 325px; min-width: 325px;" >
+  <!-- TikTok Embeds -->
+  <div id="video1" class="videoBox">
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017758760733960" data-video-id="7498017758760733960" style="max-width: 325px;">
+      <section></section>
+    </blockquote>
+  </div>
+
+  <div id="video2" class="videoBox">
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017784719559440" data-video-id="7498017784719559440" style="max-width: 325px;">
       <section></section>
     </blockquote>
   </div>
 
   <script>
+    const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    let dodgeCount = 0;
+    const yesBtn2 = document.getElementById("yesBtn2");
+    const noBtn2 = document.getElementById("noBtn2");
+    const question = document.getElementById("question");
 
+    const video1 = document.getElementById("video1");
+    const video2 = document.getElementById("video2");
+
+    let dodge1 = 0;
+    let dodge2 = 0;
+
+    // First question
     noBtn.addEventListener("mouseover", () => {
-      dodgeCount++;
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight - 100;
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
+      dodge1++;
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
 
-      if (dodgeCount === 2) {
-        document.getElementById("tiktokVideo").style.display = "block";
+      if (dodge1 === 2) {
+        video1.style.display = "block";
       }
     });
 
-    document.getElementById("yesBtn").onclick = () => {
-      alert("It's a Yes ha, Thankyouu!!Mwaa");
-    };
+    yesBtn.addEventListener("click", () => {
+      question.innerText = "Totoo ba?";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+      yesBtn2.style.display = "inline-block";
+      noBtn2.style.display = "inline-block";
+      video1.style.display = "none";
+    });
+
+    // Second question
+    noBtn2.addEventListener("mouseover", () => {
+      dodge2++;
+      const x = Math.random() * (window.innerWidth - noBtn2.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn2.offsetHeight - 100);
+      noBtn2.style.left = `${x}px`;
+      noBtn2.style.top = `${y}px`;
+
+      if (dodge2 === 2) {
+        video2.style.display = "block";
+      }
+    });
+
+    yesBtn2.addEventListener("click", () => {
+      alert("It's a Yes ha!Thankyou Mwaaa! 😍");
+    });
   </script>
 </body>
 </html>
