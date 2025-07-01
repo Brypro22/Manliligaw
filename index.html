@@ -1,124 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Pwede ba ako manligaw?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script async src="https://www.tiktok.com/embed.js"></script>
   <style>
     body {
       background-color: black;
       color: white;
-      text-align: center;
       font-family: Arial, sans-serif;
-      padding-top: 50px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
       overflow: hidden;
     }
     h1 {
+      margin-top: 80px;
       font-size: 2.5rem;
-      margin-bottom: 20px;
     }
-    .buttons {
+    #buttonWrapper {
       position: relative;
       height: 200px;
     }
     button {
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      margin: 10px;
-      cursor: pointer;
+      padding: 10px 25px;
+      font-size: 18px;
+      margin: 20px;
       border: none;
-      border-radius: 5px;
-      position: relative;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    #yesBtn, #yesBtn2 {
-      background: #2ecc71;
+    #yesBtn {
+      background-color: green;
+      color: white;
     }
-    #noBtn, #noBtn2 {
-      background: #e74c3c;
+    #noBtn {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      transition: all 0.3s ease;
+      background-color: red;
+      color: white;
+      transition: 0.2s ease;
     }
-    .video-container {
-      margin-top: 30px;
-      display: none;
-    }
-    #question2, #yesBtn2, #noBtn2 {
+    #tiktokVideo {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 320px;
       display: none;
     }
   </style>
 </head>
 <body>
-  <h1 id="question1">Pwede ba ako manligaw?</h1>
-  <h1 id="question2">Totoo ba?</h1>
-
-  <div class="buttons">
+  <h1 id="question">Pwede ba ako manligaw?</h1>
+  <div id="buttonWrapper">
     <button id="yesBtn">Oo</button>
     <button id="noBtn">Hindi</button>
-    <button id="yesBtn2">Oo</button>
-    <button id="noBtn2">Hindi</button>
   </div>
 
-  <div class="video-container" id="videoBox">
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017758760733960" data-video-id="7498017758760733960" style="width: 325px;">
-      <section> </section>
-    </blockquote>
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017784719559440" data-video-id="7498017784719559440" style="width: 325px;">
-      <section> </section>
+  <div id="tiktokVideo">
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017758760733960" data-video-id="7498017758760733960" style="max-width: 325px; min-width: 325px;" >
+      <section></section>
     </blockquote>
   </div>
 
   <script>
-    const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const yesBtn2 = document.getElementById("yesBtn2");
-    const noBtn2 = document.getElementById("noBtn2");
-    const question1 = document.getElementById("question1");
-    const question2 = document.getElementById("question2");
-    const videoBox = document.getElementById("videoBox");
-
-    let moveCount = 0;
-    let moveCount2 = 0;
-    const maxMoves = 10;
-
-    yesBtn.addEventListener("click", () => {
-      question1.style.display = "none";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-      question2.style.display = "block";
-      yesBtn2.style.display = "inline-block";
-      noBtn2.style.display = "inline-block";
-    });
+    let dodgeCount = 0;
 
     noBtn.addEventListener("mouseover", () => {
-      if (moveCount < maxMoves) {
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
-        noBtn.style.left = `${x}px`;
-        noBtn.style.top = `${y}px`;
-        moveCount++;
-      } else {
-        videoBox.style.display = "block";
+      dodgeCount++;
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 100;
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+
+      if (dodgeCount === 2) {
+        document.getElementById("tiktokVideo").style.display = "block";
       }
     });
 
-    yesBtn2.addEventListener("click", () => {
-      alert("Kinikilig ako 😍");
-    });
-
-    noBtn2.addEventListener("mouseover", () => {
-      if (moveCount2 < maxMoves) {
-        const x = Math.random() * (window.innerWidth - noBtn2.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn2.offsetHeight - 100);
-        noBtn2.style.left = `${x}px`;
-        noBtn2.style.top = `${y}px`;
-        moveCount2++;
-      } else {
-        videoBox.style.display = "block";
-      }
-    });
+    document.getElementById("yesBtn").onclick = () => {
+      alert("Yieee 😍");
+    };
   </script>
 </body>
 </html>
