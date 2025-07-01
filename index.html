@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Pwede ba ako manligaw?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Interactive Manligaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script async src="https://www.tiktok.com/embed.js"></script>
   <style>
     body {
@@ -50,16 +50,14 @@
       width: 325px;
       display: none;
     }
-    #video1 {
-      left: 20px;
-    }
-    #video2 {
-      right: 20px;
-    }
+    #video1 { left: 20px; }
+    #video2 { right: 20px; }
   </style>
 </head>
 <body>
+
   <h1 id="question">Pwede ba ako manligaw?</h1>
+
   <div id="buttonWrapper">
     <button id="yesBtn">Oo</button>
     <button id="noBtn">Hindi</button>
@@ -67,15 +65,20 @@
     <button id="noBtn2" style="display:none;">Hindi</button>
   </div>
 
-  <!-- TikTok Embeds -->
   <div id="video1" class="videoBox">
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017758760733960" data-video-id="7498017758760733960" style="max-width: 325px;">
+    <blockquote class="tiktok-embed"
+      cite="https://www.tiktok.com/@malupitan0.12/video/7498017758760733960"
+      data-video-id="7498017758760733960"
+      style="max-width: 325px;">
       <section></section>
     </blockquote>
   </div>
 
   <div id="video2" class="videoBox">
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@malupitan0.12/video/7498017784719559440" data-video-id="7498017784719559440" style="max-width: 325px;">
+    <blockquote class="tiktok-embed"
+      cite="https://www.tiktok.com/@malupitan0.12/video/7498017784719559440"
+      data-video-id="7498017784719559440"
+      style="max-width: 325px;">
       <section></section>
     </blockquote>
   </div>
@@ -93,7 +96,7 @@
     let dodge1 = 0;
     let dodge2 = 0;
 
-    // First question
+    // First question: "Pwede ba ako manligaw?"
     noBtn.addEventListener("mouseover", () => {
       dodge1++;
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -115,7 +118,7 @@
       video1.style.display = "none";
     });
 
-    // Second question
+    // Second question: "Totoo ba?"
     noBtn2.addEventListener("mouseover", () => {
       dodge2++;
       const x = Math.random() * (window.innerWidth - noBtn2.offsetWidth);
@@ -129,8 +132,9 @@
     });
 
     yesBtn2.addEventListener("click", () => {
-      alert("It's a Yes ha!Thankyou Mwaaa! 😍");
+      alert("Its a Yes ha!Tahnkyouu MWAAAA 😍");
     });
   </script>
+
 </body>
 </html>
