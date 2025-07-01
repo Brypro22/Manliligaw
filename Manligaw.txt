@@ -11,6 +11,7 @@
       text-align: center;
       font-family: Arial, sans-serif;
       padding-top: 50px;
+      overflow: hidden;
     }
     h1 {
       font-size: 2.5rem;
@@ -27,6 +28,7 @@
       cursor: pointer;
       border: none;
       border-radius: 5px;
+      position: relative;
     }
     #yesBtn {
       background: #2ecc71;
@@ -34,7 +36,9 @@
     #noBtn {
       background: #e74c3c;
       position: absolute;
-      transition: all 0.2s;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: all 0.3s ease;
     }
     .video-container {
       margin-top: 30px;
@@ -44,7 +48,7 @@
       width: 320px;
       height: 480px;
       border: none;
-      margin: 10px 0;
+      margin: 10px;
     }
   </style>
 </head>
@@ -75,19 +79,23 @@
     const noBtn = document.getElementById("noBtn");
     const videoBox = document.getElementById("videoBox");
 
+    let moveCount = 0;
+    const maxMoves = 10;
+
     yesBtn.addEventListener("click", () => {
-      alert("You're Welcome😍!");
+      alert("YEHEYYY! 😍 Salamat!");
     });
 
     noBtn.addEventListener("mouseover", () => {
-      // Move the button
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-
-      // Show videos
-      videoBox.style.display = "block";
+      if (moveCount < maxMoves) {
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100); // minus to avoid overlap
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+        moveCount++;
+      } else {
+        videoBox.style.display = "block";
+      }
     });
   </script>
 </body>
